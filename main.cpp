@@ -87,44 +87,64 @@ void Making_Passenger()
     std::cout << "Experation year: ";
     std::cin >> ex_year;
 
-    Passenger(name_input, e_adress, phone, document_type, sex, id, ex_year);
+    Passenger per1(name_input, e_adress, phone, document_type, sex, id, ex_year);
+
+    std::cout << "Hello " << per1.Get_Name() << ", your code is " << per1.Get_ID() << std::endl << std::endl;
+    per1.Set_Status("normal");
 }
 
-/*
+void Plane_Details(Plane &p)
+{
+    std::cout << "Planes max-speed: " << p.Speed() << std::endl;
+    std::cout << "Planes max-altitude: " << p.Altitude() << std::endl;
+}
+
 void Make_Planes()
 {
-    std::vector<Plane*> planes;
-    planes.push_back(new Light_Jet("Bluebird Airways"));
+    Light_Jet p1("Bluebird Airline");
+    Aircraft p2("Bluebird Airline");
+    Regional_Jet p3("Bluebird Airline");
+
+    Plane_Details(p2);
 }
-*/
 
-void Verify_Luggage(Luggage l)
+void Verify_Luggage(Luggage* l)
 {
-    Luggage* lug1 = &l;
 
-    Checked* checked = dynamic_cast<Checked*>(lug1);
+    Carry_On* cary = dynamic_cast<Carry_On*>(l);
     
-    if(checked) {
-        std::cout << "This is a check-luggage" << std::endl;
+    if(cary) {
+        std::cout << "This is a carry-on" << std::endl;
     }
     else {
-        Carry_On* cary = dynamic_cast<Carry_On*>(lug1);
+        Checked* checked = dynamic_cast<Checked*>(l);
         
-        if(cary) {
-            std::cout << "This is a carry-on" << std::endl;
+        if(checked) {
+            std::cout << "This is a checked" << std::endl;
         }
-        else { std::cout << "This is not a luggage" << std::endl;}
+        else { std::cout << "None of the above" << std::endl;}
     }
 }
 
 int main()
 {
-    Luggage l(20, 12, 8, 17);
-    Verify_Luggage(l);
+    std::vector<Luggage*> vl;
+    Carry_On* bag1 = new Carry_On(20, 12, 8, 17);
+    Checked* bag2 = new Checked(20, 12, 8, 17);
+    vl.push_back(bag1);
+    vl.push_back(bag2);
+
+    for(int i = 0; i < vl.size(); i++)
+    {
+        Verify_Luggage(vl[i]);
+    }
+
     List airport_list(4); 
     Adding_Airports(airport_list);
 
     Making_Passenger();
+
+    Make_Planes();
 
     Making_Flight(airport_list);
 
