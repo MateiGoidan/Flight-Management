@@ -11,7 +11,7 @@ class Airport
 
 public:
     Airport();                                                                  //Default constructor
-    Airport(std::string name, double x, double y);                                  //Constructor with parameters
+    Airport(std::string name, double x, double y);                              //Constructor with parameters
     Airport(const Airport& airport);                                            //Copy-constructor
     void Set_Data(double x, double y);                                          //Set coordinates
     void Set_Data(std::string name);                                            //Set the name of the airport
