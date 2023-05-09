@@ -1,12 +1,27 @@
-#include <iostream>
-#include <string>
+#ifndef LIGHT_JET
+#define LIGHT_JET
+
 #include "plane.hpp"
-#include "light_jet.hpp"
 
-//Constructor
-Light_Jet::Light_Jet(std::string al) : airline_agency(al) {}
+class Light_Jet : public Plane
+{
+public:
+    Light_Jet(std::string al) : airline(al) {}
 
-//Functions
-int Light_Jet::Speed() { return max_speed; }
+    virtual int Speed() {
+        return max_speed;
+    }
 
-int Light_Jet::Altitude() {return max_altitude; }
+    virtual int Altitude() 
+    {
+        return max_altitude;
+    }
+
+private:
+    std::string airline;
+    int max_speed = 70;
+    int max_altitude = 1400;
+    
+};
+
+#endif // !LIGHT_JET
