@@ -4,12 +4,12 @@
 class Data
 {
 protected:
+    std::string name;
     Data(std::string n, std::string e, std::string p);
     //add helper function or find out about theme
 
 private:
     
-    std::string name;
     std::string email;
     std::string phone;
 
