@@ -20,3 +20,12 @@ void Luggage::Verify_Weight()
 
 //Getters
 float Luggage::Get_Volume() {return *height * *width * *length;}
+
+//Destructors
+Luggage::~Luggage()
+{
+    delete weight;
+    delete height;
+    delete width;
+    delete length;
+}
